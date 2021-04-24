@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get '/home_page' => "web_pages#home_page", :as => :home_page_root
 
   devise_for :users, controllers: {
-    sessions: 'devise/sessions'
+    sessions: 'devise/sessions',
+    after_social_connection: 'users/registrations/after_social_connection',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   devise_scope :user do
     root 'devise/sessions#new'

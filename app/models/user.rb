@@ -3,8 +3,11 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,:confirmable,
-         :lockable, :timeoutable, :trackable, authentication_keys: [:login]
+         :recoverable, :rememberable, :validatable, :confirmable,
+         :lockable, :timeoutable, :trackable,
+         :omniauthable, omniauth_providers: %i[facebook], authentication_keys: [:login]
+
+  validates_uniqueness_of :mobile_number
 
   def login
     @login || self.mobile_number || self.email

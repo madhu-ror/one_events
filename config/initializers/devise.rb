@@ -80,6 +80,7 @@ Devise.setup do |config|
   # The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
   # config.http_authenticatable = false
+  config.omniauth :facebook, Rails.application.credentials.facebook[:APP_ID], Rails.application.credentials.facebook[:APP_SECRET], scope: 'email', info_fields: 'email, first_name,middle_name,last_name,name', display: 'popup', token_params: { parse: :json }
 
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
